@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../build/strand.html" />
+    <link rel="import" href="../src/mm-pagination/mm-pagination.html">
+    <link rel="import" href="../src/mm-pagination/pageDataProvider.html">
+    <title>Demo : Strand Components</title>
+    <style>
+        body {
+            font-style: inherit;
+            font-variant: inherit;
+            font-weight: inherit;
+            font-stretch: inherit;
+            font-family: Roboto, sans-serif;
+            padding: 0px;
+            margin: 0px;
+        }
+        .indexList {
+            border: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+            text-decoration: none;
+            outline: none;
+            color: rgba(0, 0, 0, 0.870588);
+            font-size: 16px;
+            line-height: 16px;
+            position: relative;
+            margin:80px 40px;
+        }
+
+        .list {
+            margin-left: 0;
+            padding-left: 72px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            padding-top: 20px;
+            position: relative;
+        }
+
+            .list a {
+                text-decoration: none;
+            }
+
+                .list a .icon {
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    display: inline-block;
+                    background-color: #bdbdbd;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 24px;
+                    color: #ffffff;
+                    position: absolute;
+                    top: 8px;
+                    left: 16px;
+                    -webkit-user-select: none;
+                }
+        .header {
+            background-color: #00bcd4;
+            position: fixed;
+            z-index: 100;
+            width: 100%;
+            display: flex;
+            min-height: 64px;
+            top: 0;
+        }
+            .header h1 {
+                margin: 0;
+                letter-spacing: 0;
+                font-size: 24px;
+                font-weight: 400;
+                color: #ffffff;
+                line-height: 64px;
+                flex: 1;
+                text-align: center;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div class="header">
+        <h1 class="">Demo : Index</h1>
+    </div>
+    
+    <div class="indexList">
+        <div class="list">
+            <a href="./paginationDemo.html" target="_blank">
+                <div class="icon">
+                    <span>D1</span>
+                </div>
+                <div>Grid & Pagination Demo</div>
+            </a>
+        </div>
+
+        <div class="list">
+            <a href="./rating/index.html" target="_blank">
+                <div class="icon">
+                    <span>D2</span>
+                </div>
+                <div>Rating Demo</div>
+            </a>
+        </div>
+        <div class="list">
+            <a href="./imageGallery/index.html" target="_blank">
+                <div class="icon">
+                    <span>D3</span>
+                </div>
+                <div>Image Gallery Demo</div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>

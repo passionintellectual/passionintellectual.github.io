@@ -1,0 +1,117 @@
+@-webkit-keyframes leftmove {
+  from {
+    left: 0px; }
+
+  to {
+    left: -100px; } }
+
+@keyframes leftmove {
+  from {
+    left: 0px; }
+
+  to {
+    left: -100px; } }
+
+@-webkit-keyframes rightmove {
+  from {
+    left: -100px; }
+
+  to {
+    left: 0px; } }
+
+@keyframes rightmove {
+  from {
+    left: -100px; }
+
+  to {
+    left: 0px; } }
+
+.img-slider .slide_left {
+  position: relative;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-animation: rightmove 1s 1;
+  animation: rightmove 1s 1; }
+
+.img-slider .slide_right {
+  position: absolute;
+  left: 100px;
+  visibility: hidden;
+  -webkit-animation: leftmove 2s 1;
+  animation: leftmove 2s 1;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
+
+.img-slider img {
+  opacity: 0.5; }
+
+.img-slider img.active {
+  opacity: 1; }
+
+.slides {
+  width: 76%;
+  padding: 5px;
+  border: 5px solid #ccc;
+  display: table;
+  position: relative;
+  height: 100px;
+  margin: auto; }
+
+.image-gallery div#imglinks {
+  width: 94%;
+  overflow: hidden;
+  height: 110px;
+  left: 20px;
+  overflow: hidden;
+  position: absolute; }
+
+mm-modal {
+  display: block;
+  margin: 0 11%;
+  width: auto;
+  padding: 5px;
+  border: 10px solid #000;
+  background: #ccc;
+  min-height: 500px;
+  height: auto; }
+
+.img-align {
+  position: relative;
+  width: 100%; }
+
+.slider {
+  cursor: pointer;
+  display: table-cell;
+  width: 25px;
+  height: 80px;
+  position: relative;
+  top: 35px; }
+
+.left {
+  background: url("./images/left-arrow.png") no-repeat;
+  display: table-cell;
+  left: -5px; }
+
+.img-slider {
+  height: 100px;
+  left: 0;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 180%; }
+
+.right {
+  background: url("./images/right-arrow.png") no-repeat;
+  cursor: pointer;
+  right: 4px;
+  display: table-cell; }
+
+.img-caption {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  height: 20px; }

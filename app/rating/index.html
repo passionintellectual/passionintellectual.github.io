@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Training Feedback Form</title>
+        <script language="javascript" src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+        <link rel="import" href="../../build/strand.html"/>
+        <link rel="import" href="../../build/mm-rating/mm-rating.html">
+
+        <style type="text/css">
+            body {
+                font-style: inherit;
+                font-variant: inherit;
+                font-weight: inherit;
+                font-stretch: inherit;
+                font-family: Roboto, sans-serif;
+                padding: 0px;
+                margin: 0px;
+            }
+            body {
+                width: 70%;
+                margin: 0 auto;
+            }
+            .heading {
+                text-align: center;
+            }
+            hr {
+                width: 95%;
+            }
+            h2 {
+                margin: 4px 25px 0px 270px;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 36px;
+            }
+            .tab-content {
+                box-sizing: border-box;
+                padding: 15px;
+            }
+            .border2px {
+                border: 2px solid black;
+            }
+            .btmborder2px {
+                border-bottom: 2px solid black;
+            }
+            .lbl-padding {
+                padding: 5px 0px 0px 40px;
+                font-weight: 700;
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+            .lbl-font {
+                font-weight: 700;
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+            .footer {
+                padding: 30px; text-align: center
+            }
+        </style>
+    </head>
+    <body>
+        <mm-form id="testForm" columns="4" actions="no" footer-fixed="false" class="border2px">
+            <div class="col" span="4">
+                <h1 class="heading">Training Feedback Form</h1>
+                <hr>
+            </div>
+            <div class="col lbl-padding" span="1">
+                <label fitparent>Name</label>
+            </div>
+            <div class="col" span="1">
+                <mm-input name="input" fitparent></mm-input>
+            </div>
+            <div class="col lbl-padding" span="1">
+                <label>Date</label>
+            </div>
+            <div class="col" span="1">
+                <mm-button id="btn">
+                    <label>Select a Date</label>
+                </mm-button>
+                <mm-datepicker id="dp" target="#btn" use-timezone="false" use-range="false"></mm-datepicker>
+            </div>
+            <div class="col lbl-padding" span="1">
+                <label>Training Topic</label>
+            </div>
+            <div class="col" span="1">
+                <mm-input name="input" fitparent></mm-input>
+            </div>
+            <div class="col lbl-padding" span="1">
+                <label>Faculty Name</label>
+            </div>
+            <div class="col" span="1">
+                <mm-input name="input" fitparent></mm-input>
+            </div>
+            <div class="col lbl-padding" span="1">
+                <label>Duration</label>
+            </div>
+            <div class="col" span="1">
+                <mm-input name="input" fitparent></mm-input>
+            </div>
+            <div class="col lbl-padding" span="1">
+                <label>Location</label>
+            </div>
+            <div class="col" span="1">
+                <mm-input name="input" fitparent></mm-input>
+            </div>
+            <div class="col btmborder2px" span="4"></div>
+
+            <div class="col btmborder2px" span="4">
+                <mm-tabs tab-bar-offset="15">
+                    <mm-tab tab-label="Faculty Performance" active>
+                        <div class="tab-content">
+                            <mm-grid id="mmGridTab1" style="width: 100%; min-height: 230px;">
+                                <mm-grid-column field="sr_no" resize>Sr. No.</mm-grid-column>
+                                <mm-grid-column field="particulars" resize>Particulars</mm-grid-column>
+                                <mm-grid-column field="excellent" resize>Excellent</mm-grid-column>
+                                <mm-grid-column field="good" resize>Good</mm-grid-column>
+                                <mm-grid-column field="reasonable" resize>Reasonable</mm-grid-column>
+                                <mm-grid-column field="need_impro" resize>Need Improvement</mm-grid-column>
+                                <mm-grid-column field="poor" resize>Poor</mm-grid-column>
+                                <template preserve-content>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>1</span></div>
+                                        <div field="particulars">
+                                            <span>Presentation and communication skills of the trainer</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab1_line1_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab1_line1_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab1_line1_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab1_line1_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab1_line1_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>2</span></div>
+                                        <div field="particulars">
+                                            <span>Technical skills / subject knowledge of the trainer</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab1_line2_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab1_line2_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab1_line2_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab1_line2_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab1_line2_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>3</span></div>
+                                        <div field="particulars">
+                                            <span>Ability of the trainer to handle queries</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab1_line3_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab1_line3_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab1_line3_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab1_line3_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab1_line3_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>4</span></div>
+                                        <div field="particulars">
+                                            <span>Ability of the trainer to generate intrest</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab1_line4_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab1_line4_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab1_line4_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab1_line4_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab1_line4_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>5</span></div>
+                                        <div field="particulars">
+                                            <span>Interactive session</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab1_line5_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab1_line5_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab1_line5_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab1_line5_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab1_line5_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                </template>
+                            </mm-grid>
+                        </div>
+                    </mm-tab>
+                    <mm-tab tab-label="Course Feedback">
+                        <div class="tab-content">
+                            <mm-grid id="mmGridTab2" style="width: 100%; min-height: 155px;">
+                                <mm-grid-column field="sr_no" resize>Sr. No.</mm-grid-column>
+                                <mm-grid-column field="particulars" resize>Particulars</mm-grid-column>
+                                <mm-grid-column field="excellent" resize>Excellent</mm-grid-column>
+                                <mm-grid-column field="good" resize>Good</mm-grid-column>
+                                <mm-grid-column field="reasonable" resize>Reasonable</mm-grid-column>
+                                <mm-grid-column field="need_impro" resize>Need Improvement</mm-grid-column>
+                                <mm-grid-column field="poor" resize>Poor</mm-grid-column>
+                                <template preserve-content>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>1</span></div>
+                                        <div field="particulars">
+                                            <span>Overall quality of training</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab2_line1_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab2_line1_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab2_line1_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab2_line1_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab2_line1_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>2</span></div>
+                                        <div field="particulars">
+                                            <span>Coverage of topics outlined</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab2_line2_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab2_line2_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab2_line2_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab2_line2_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab2_line2_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>3</span></div>
+                                        <div field="particulars">
+                                            <span>Quality of training material supplied</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab2_line3_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab2_line3_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab2_line3_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab2_line3_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab2_line3_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                </template>
+                            </mm-grid>
+                        </div>
+                    </mm-tab>
+                    <mm-tab tab-label="Venue / Infrastructure">
+                        <div class="tab-content">
+                            <mm-grid id="mmGridTab3" style="width: 100%; min-height: 10px;">
+                                <mm-grid-column field="sr_no" resize>Sr. No.</mm-grid-column>
+                                <mm-grid-column field="particulars" resize>Particulars</mm-grid-column>
+                                <mm-grid-column field="excellent" resize>Excellent</mm-grid-column>
+                                <mm-grid-column field="good" resize>Good</mm-grid-column>
+                                <mm-grid-column field="reasonable" resize>Reasonable</mm-grid-column>
+                                <mm-grid-column field="need_impro" resize>Need Improvement</mm-grid-column>
+                                <mm-grid-column field="poor" resize>Poor</mm-grid-column>
+                                <template preserve-content>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>1</span></div>
+                                        <div field="particulars">
+                                            <span>Hardware / Software setup</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab3_line1_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab3_line1_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab3_line1_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab3_line1_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab3_line1_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                    <mm-grid-item model="{{model}}" scope="{{scope}}">
+                                        <div field="sr_no"><span>2</span></div>
+                                        <div field="particulars">
+                                            <span>Creation of appropriate Learning environment</span>
+                                        </div>
+                                        <div field="excellent"><mm-radio group="tab3_line2_rating" unresolved></mm-radio></div>
+                                        <div field="good"><mm-radio group="tab3_line2_rating" unresolved></mm-radio></div>
+                                        <div field="reasonable"><mm-radio group="tab3_line2_rating" unresolved></mm-radio></div>
+                                        <div field="need_impro"><mm-radio group="tab3_line2_rating" unresolved></mm-radio></div>
+                                        <div field="poor"><mm-radio group="tab3_line2_rating" unresolved></mm-radio></div>
+                                    </mm-grid-item>
+                                </template>
+                            </mm-grid>
+                        </div>
+                    </mm-tab>
+                </mm-tabs>
+            </div>
+            <div class="col btmborder2px" span="4">
+                <div class="col" span="4" style="padding-left: 10px">
+                    <label class="lbl-font">Strengths Of This Training</label>
+                </div>
+                <div class="col" span="4" style="padding: 10px">
+                    <mm-textarea rows="3" fitparent></mm-textarea>
+                </div>
+                <div class="col" span="4" style="padding-left: 10px">
+                    <label class="lbl-font">Weakness Of This Training</label>
+                </div>
+                <div class="col" span="4" style="padding: 10px">
+                    <mm-textarea rows="3" fitparent></mm-textarea>
+                </div>
+                <div class="col" span="4" style="padding-left: 10px">
+                    <label class="lbl-font">Improvement Areas</label>
+                </div>
+                <div class="col" span="4" style="padding: 10px">
+                    <mm-textarea rows="3" fitparent></mm-textarea>
+                </div>
+            </div>
+            <h2>Overall Rating</h2>
+
+            <!--<mm-rating display-totals></mm-rating>-->
+            <!--<mm-rating display-greetings on-changed="testFunc()" custom-icon="images/images.jpg"></mm-rating>-->
+            <mm-rating display-greetings values="{4: 'Excellent', 3: 'Good', 2: 'Reasonable', 1: 'Need Improvement', 0: 'Poor'}"></mm-rating>
+
+            <hr>
+            <div class="col footer" span="4">
+               <mm-button>
+                   <label>Submit</label>
+               </mm-button>
+            </div>
+        </mm-form>
+
+    <script>
+        var tab1_grid = document.querySelector("#mmGridTab1"),
+            tab2_grid = document.querySelector('#mmGridTab2'),
+            tab3_grid = document.querySelector('#mmGridTab3'),
+            grid1Data = [{
+                sr_no: "1",
+                particulars: "Last",
+                excellent: "text@example.com",
+                good: false,
+                reasonable: '',
+                poor: ''
+            }];
+        window.addEventListener("WebComponentsReady", function() {
+            tab1_grid.data = grid1Data;
+            tab2_grid.data = grid1Data;
+            tab3_grid.data = grid1Data;
+        });
+        document.querySelector('mm-rating').addEventListener('changed', function (e) {
+//            alert(JSON.stringify(e.detail)); // true
+        });
+
+    </script>
+
+
+
+    </body>
+</html>

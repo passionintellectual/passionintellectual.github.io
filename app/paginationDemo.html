@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../build/strand.html"/>
+    <link rel="import" href="../src/mm-pagination/mm-pagination.html">
+    <link rel="import" href="../src/mm-pagination/mm-taglist.html">
+    <link rel="import" href="../src/mm-pagination/pageDataProvider.html">
+    <link rel="import" href="../src/mm-filter/mm-filter.html">
+
+    <title>Strand Components: Pagination</title>
+    <style>
+        body {
+            font-style: inherit;
+            font-variant: inherit;
+            font-weight: inherit;
+            font-stretch: inherit;
+            font-family: Roboto, sans-serif;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .mm-grid-wrapper {
+            padding: 20px 40px;
+            /*height:600px;*/
+        }
+
+        mm-grid {
+            border: 1px #E0E0E0 solid;
+        }
+    </style>
+    <!-- A default grid item example -->
+
+
+
+    <div class="mm-grid-wrapper">
+        <div style="margin-bottom: 20px;">
+            <!-- sort buttons -->
+            <mm-button style="display:none;" id="toggleSortBtn" type="secondary">
+                <label>Sort by first column</label>
+            </mm-button>
+            <!-- sort buttons end -->
+            <!-- Search input -->
+            <mm-input style="display:none;" id="searchInput" placeholder="Search and Clear" search="true" clear="true"></mm-input>
+            <!-- Search Input end-->
+            <mm-filter id="mmfilter" ></mm-filter>
+            <mm-button onclick="searchRecords()"><label for="">Search ></label></mm-button>
+        </div>
+        <mm-grid manual-sort id="mmTestGrid1" selectable class="mm-grid" style="width: 100%; height: 397px;">
+            <mm-grid-column sort field="first_name">First Name</mm-grid-column>
+            <mm-grid-column sort field="last_name">Last Name</mm-grid-column>
+            <mm-grid-column field="email">Email</mm-grid-column>
+        </mm-grid>
+    </div>
+
+    <template is="dom-bind">
+        <mm-collection id="searchResults" data="{{dataList}}" auto="false">
+        </mm-collection>
+        <template is="dom-repeat" items="{{datalist}}">
+            <div>{{item.name}}</div>
+        </template>
+    </template>
+
+    <mm-pagination id="paginationComponent" total-rows="{{grid1DataLength}}" page-size="10">
+        <mm-pagination-data-provider id="paginationDataProvider"  on-pagedata="pagedataChanged()"></mm-pagination-data-provider>
+    </mm-pagination>
+    <script>
+        // Default grid example
+        var grid1 = document.querySelector("#mmTestGrid1"),
+                grid1Data = [];
+
+        var paginationComponent = document.querySelector('#paginationComponent');
+        var paginationDataProvider = document.querySelector('#paginationDataProvider');
+        var mmfilter = document.querySelector('#mmfilter');
+
+        var grid1DataLength;
+
+        for (var i = 0; i < 33; i++) {
+            grid1Data.push({
+                first_name: "First_" + i,
+                last_name: "Last_" + i,
+                email: "text@example.com " + (33 - i),
+                selected: false
+            });
+        }
+
+        //SORT functionality
+        var toggleSortBtn = document.querySelector("#toggleSortBtn");
+        toggleSortBtn.onclick = function () {
+            this.type = this.type === "secondary" ? "primary" : "secondary";    //button cosmatic changes
+
+            var sortConfig = [{ 'sortField': 'first_name', 'sortFun': function () { } }];
+            if (this.type == "primary") {
+                sortConfig[0].sortOrder = 'desc';
+            }
+            else {
+                sortConfig[0].sortOrder = 'asc';
+            }
+            paginationDataProvider.sortConfig = sortConfig;
+            paginationDataProvider.sort();
+            //paginationDataProvider.data =
+            // grid1.data = paginationDataProvider.data;
+        }
+        //SORT functionality end
+
+        //search
+        var searchInput = document.querySelector("#searchInput");
+        searchInput.onchange = function (evt) {
+            var searchVal = evt.currentTarget.value;
+            //comparison ==> ['exactMatch','contains','greaterThan','lessThan','',function(){}]
+            var searchConfig = [
+                { 'searchValue': searchVal, 'column': 'first_name', 'comparison': 'contains', 'logicalOperator': "AND", 'parent': 0 },
+                //   { 'searchValue': 'text@example.com 699', 'column': 'email', 'comparison': 'contains', 'logicalOperator': "AND", 'parent': 0 }
+            ];
+            paginationDataProvider.searchConfig = mmfilter.searchConfig;
+
+            paginationDataProvider.advanceSearch();
+        }
+        //end search
+        function searchRecords() {
+            paginationDataProvider.searchConfig = mmfilter.searchConfig;
+
+            paginationDataProvider.advanceSearch();
+        }
+
+        paginationComponent.addEventListener('pagechanged', function (e) {
+            //console.log(JSON.stringify(e.detail.page)); // true
+            var dataPageNumber = e.detail.page;
+            paginationDataProvider.page = dataPageNumber;
+        });
+        paginationDataProvider.addEventListener('pagedata', function pagedataChanged(e) {
+            //console.log('page data changed');
+            grid1.data = e.detail.pageData;
+        });
+        window.addEventListener("WebComponentsReady", function () {
+            //grid1.data = grid1Data;
+            paginationDataProvider.data = grid1Data;
+            grid1DataLength = grid1Data.length;
+            mmfilter.data = grid1Data;
+
+//            mmfilter.searchConfig =  [
+//                { 'searchValue': 'searchVal', 'column': 'first_name', 'comparison': 'contains', 'logicalOperator': "OR"  },
+//                //   { 'searchValue': 'text@example.com 699', 'column': 'email', 'comparison': 'contains', 'logicalOperator': "AND", 'parent': 0 }
+//            ];
+
+
+            grid1.addEventListener('sortChanged', function(e){
+                console.log('sort changed grid', e.detail);
+                paginationDataProvider.sortConfig = [{ 'sortField': e.detail.sortField, 'sortOrder': e.detail.sortOrder }];
+                paginationDataProvider.sort();
+            })
+        });
+
+    </script>
+
+
+</head>
+<body>
+</body>
+</html>
