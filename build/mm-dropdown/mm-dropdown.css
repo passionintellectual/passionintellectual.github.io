@@ -1,0 +1,336 @@
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/* mm-dropdown sass */
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+.button {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  font-family: "Arimo", sans-serif;
+  font-weight: 700;
+  font-size: 13px !important;
+  line-height: 29px !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-transform: capitalize;
+  border: 1px solid;
+  border-radius: 4px 4px 4px 4px;
+  padding: 0 10px;
+  cursor: pointer;
+  margin: 0;
+  height: 29px !important;
+  width: auto;
+  /* _layout modes for button */ }
+  .button > ::content label {
+    font-family: "Arimo", sans-serif;
+    font-weight: 700;
+    font-size: 13px !important;
+    line-height: 29px !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    pointer-events: none;
+    white-space: nowrap; }
+  .button > ::content mm-icon {
+    display: block;
+    pointer-events: none; }
+  .button > ::content mm-icon + label,
+  .button > ::content mm-spinner + label {
+    padding-left: 7px; }
+  .button:focus {
+    outline: none; }
+  .button.fit {
+    width: 100%; }
+  .button.primary {
+    color: #003C71;
+    border-color: #55ADF3;
+    background: #96D4F8; }
+  .button.invalid, .button.primary.invalid, .button.secondary.invalid {
+    border-color: #f85252; }
+  .button.primary:hover {
+    color: #003C71;
+    background-color: #77BDF5; }
+  .button.primary:active {
+    background-image: linear-gradient(#5ca1d7, #77BDF5);
+    box-shadow: inset 0 5px 1px #5ca1d7; }
+  .button.secondary {
+    color: #333;
+    border-color: #CCC;
+    background: #FFF;
+    background-image: linear-gradient(#FFF, #f2f4f8); }
+  .button.secondary:hover {
+    color: #333;
+    background-color: #E5E5E5;
+    background-image: none; }
+  .button.secondary:active {
+    background-image: linear-gradient(#d5d5d5, #E5E5E5);
+    box-shadow: inset 0 5px 1px #d5d5d5; }
+  .button.opened.bottom {
+    border-radius: 4px 4px 0px 0px; }
+  .button.opened.top {
+    border-radius: 0px 0px 4px 4px; }
+
+/* _layout modes for button */
+/* horizontal */
+:host([_layout=hgroup-left]) .button {
+  border-radius: 4px 0px 0px 4px; }
+
+:host([_layout=hgroup-left]) .button.opened.bottom {
+  border-radius: 4px 0px 0px 0px; }
+
+:host([_layout=hgroup-left]) .button.opened.top {
+  border-radius: 0px 0px 0px 4px; }
+
+:host([_layout=hgroup-center]) {
+  margin-left: -1px; }
+  :host([_layout=hgroup-center]) .button,
+  :host([_layout=hgroup-center]) .button.opened.bottom,
+  :host([_layout=hgroup-center]) .button.opened.top {
+    border-radius: 0px 0px 0px 0px; }
+
+:host([_layout=hgroup-right]) {
+  margin-left: -1px; }
+  :host([_layout=hgroup-right]) .button {
+    border-radius: 0px 4px 4px 0px; }
+  :host([_layout=hgroup-right]) .button.opened.bottom {
+    border-radius: 0px 4px 0px 0px; }
+  :host([_layout=hgroup-right]) .button.opened.top {
+    border-radius: 0px 0px 4px 0px; }
+
+/* vertical */
+:host([_layout=vgroup-top]) .button,
+:host([_layout=vgroup-center]) .button,
+:host([_layout=vgroup-left]) .button {
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+:host([_layout=vgroup-top]) .button {
+  border-radius: 4px 4px 0px 0px; }
+
+:host([_layout=vgroup-center]) {
+  margin-top: -1px; }
+  :host([_layout=vgroup-center]) .button {
+    border-radius: 0px 0px 0px 0px; }
+
+:host([_layout=vgroup-bottom]) {
+  margin-top: -1px; }
+  :host([_layout=vgroup-bottom]) .button {
+    border-radius: 0px 0px 4px 4px; }
+
+:host([size='large']) .button {
+  height: 46px !important;
+  padding: 0 15px; }
+  :host([size='large']) .button > ::content label {
+    font-size: 15px !important;
+    line-height: 46px !important; }
+
+:host([size='normal']) .button {
+  height: 29px !important;
+  padding: 0 10px; }
+  :host([size='normal']) .button > ::content label {
+    font-family: "Arimo", sans-serif;
+    font-weight: 700;
+    font-size: 13px !important;
+    line-height: 29px !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased; }
+
+:host([size='small']) .button {
+  height: 26px !important;
+  padding: 0 8px !important; }
+  :host([size='small']) .button > ::content label {
+    font-size: 11px !important;
+    line-height: 26px !important; }
+
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+.button {
+  display: block;
+  position: relative;
+  padding-right: 32px; }
+  .button label {
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: none;
+    display: block;
+    width: 100%;
+    font-weight: 400 !important; }
+  .button #caratIcon {
+    padding: 0 10px 0 13px;
+    position: absolute;
+    margin-top: -4px;
+    top: 50%;
+    right: 0px;
+    display: block; }
+  .button #caratIcon.closed {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1); }
+  .button #caratIcon.opened {
+    -webkit-transform: scaleY(-1);
+            transform: scaleY(-1); }
+  .button mm-icon {
+    pointer-events: none; }
+  .button .left-items {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    height: 100%; }
+
+.scroll-container {
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+#recycler {
+  height: 100%; }
+
+#panel {
+  position: fixed;
+  display: block;
+  z-index: 1; }
+
+#container {
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.18); }
+  #container.opened.s {
+    border-radius: 0 0 4px 4px; }
+  #container.opened.n {
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.18); }
+  #container #list {
+    overflow-x: hidden;
+    overflow-y: auto; }
+
+:host([size='large']) .button {
+  padding: 0 32px 0 15px; }
+  :host([size='large']) .button label {
+    font-size: 15px !important;
+    line-height: 46px !important; }
+
+:host([size='normal']) .button {
+  padding: 0 32px 0 10px; }
+  :host([size='normal']) .button label {
+    font-size: 13px !important;
+    line-height: 29px !important; }
+
+:host([size='small']) .button {
+  padding: 0 26px 0 8px !important;
+  height: 26px; }
+  :host([size='small']) .button label {
+    font-size: 11px !important;
+    line-height: 25px !important; }
+  :host([size='small']) .button #caratIcon {
+    padding: 0 8px 0 10px; }
+
+:host([size='small']) #container > ::content mm-list-item,
+:host([size='small']) mm-list-item {
+  font-size: 11px !important;
+  line-height: 13px !important; }
+
+:host([skinless]) .button {
+  border: none;
+  background: initial;
+  padding: 0 20px 0 8px !important; }
+  :host([skinless]) .button label {
+    font-weight: 700 !important; }
+  :host([skinless]) .button:hover, :host([skinless]) .button:active {
+    background: initial;
+    box-shadow: none; }
+  :host([skinless]) .button #caratIcon {
+    padding: 0 8px 0 4px; }
+
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+:host {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0em;
+  line-height: 0em; }
+
+:host([disabled]) {
+  pointer-events: none;
+  opacity: 0.5; }
+
+:host([fitparent]) {
+  width: 100%; }
+
+:host([disabled]) {
+  pointer-events: none;
+  opacity: 0.5; }
+
+.hidden {
+  display: none; }
+
+#itemRecycler {
+  height: 0px; }
+
+#itemRecycler[hidden] {
+  display: none; }
+
+#container {
+  width: 100%; }
+
+#caratIcon {
+  color: #333; }

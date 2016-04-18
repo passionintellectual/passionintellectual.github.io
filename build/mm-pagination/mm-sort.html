@@ -1,0 +1,55 @@
+<!--
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<dom-module id="mm-box">
+    <link rel="import" type="css" href="mm-sort.css"/>
+    <style></style>
+    <template>
+        <mm-dropdown id="jumpTo" placeholder="1" on-changed="pageNumberChange" value="{{pageDisplayValue(page)}}"   >
+            <template is="dom-repeat" items="{{allColumns}}">
+                <mm-list-item>{{item}}</mm-list-item>
+            </template>
+        </mm-dropdown>
+    </template>
+    <script>
+        (function () {
+            Polymer({
+                is: 'mm-sort',
+                ready: function () {
+
+                },
+                _populateCols:function () {
+                 
+                },
+                observers: [
+                    //'_pageChangedExtended(page)',
+
+
+                ],
+
+                properties: {
+                    data: {
+                        type: Object,
+                        value: {},
+
+                    },
+                    columns:{
+                        type:Array,
+                        value:[],
+
+                    }
+                },
+                behaviors: [
+                    StrandTraits.Resolvable
+                ],
+            });
+        })(window.Strand = window.Strand || {})
+    </script>
+</dom-module>
+<script src="mm-sort.js"></script>

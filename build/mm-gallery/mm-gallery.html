@@ -1,0 +1,27 @@
+<dom-module id="mm-gallery" scope="{{scope}}">
+  <!--<link rel="import" type="css" href="mm-gallery.css" />-->
+  <link rel="stylesheet" href="mm-gallery.css" />
+  <script src="mm-gallery.js"> 	</script>
+
+  <template>
+    <mm-form>
+      <div id="slider-panel" class="slides">
+        <div class="slider left"> </div>
+        <div id="imglinks" name="imglinks">
+          <div class="img-slider" id="imgslider"> </div>
+        </div>
+        <div class="slider right"> </div>
+      </div>
+      <div class="img-modal">
+        <content select=".header"> </content>
+        <img class="img-align"> </img>
+        <content select=".footer"> </content>
+      </div>
+    </mm-form>
+  </template>
+</dom-module>
+
+
+
+
+

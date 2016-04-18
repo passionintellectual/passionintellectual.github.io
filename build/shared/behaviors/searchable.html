@@ -1,0 +1,171 @@
+<script>
+    /**
+     * @license
+     * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+     * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+     */
+    (function (scope) {
+
+        var Searchable = {
+            properties: {
+                searchConfig: {
+                    type: Object,
+                    value: {}
+                }
+            },
+            _getSearchFn: function (config) {
+                switch (config.comparison) {
+                    case "exactMatch":
+                        return function (item) {
+                            var itemValue;
+                            if (config.column == 'ALL') {
+                                itemValue = JSON.stringify(item);
+                            } else {
+                                itemValue = item[config.column];
+                            }
+                            itemValue = (itemValue||'').toString();
+                            return itemValue === config.searchValue;
+                        }
+                        break;
+                    case "contains":
+                        return function (item) {
+                            var itemValue;
+                            if (config.column && config.column == 'ALL') {
+                                itemValue = JSON.stringify(item);
+                            } else {
+                                itemValue = config.column ? item[config.column] : '';
+
+                            }
+                            itemValue = (itemValue||'').toString();
+                            return itemValue.search(config.searchValue || '') > -1;
+                        }
+                        break;
+                    case "LessThan":
+                        return function (item) {
+                            var itemValue;
+                            if (config.column && config.column == 'ALL') {
+                                itemValue = '';
+                            } else {
+                                itemValue = config.column ? item[config.column] : '';
+
+                            }
+                           if(!isNaN(itemValue)){
+                               if(config.inclusive){
+                                   return itemValue <= parseFloat(config.searchValue);
+                               }else{
+                                   return itemValue < parseFloat(config.searchValue);
+                               }
+                           }else{
+                               return false;
+                           }
+
+                        }
+                        break;
+                    case "GreaterThan":
+                        return function (item) {
+                            var itemValue;
+                            if (config.column && config.column == 'ALL') {
+                                itemValue = '';
+                            } else {
+                                itemValue = config.column ? item[config.column] : '';
+
+                            }
+                           if(!isNaN(itemValue)){
+                               if(config.inclusive){
+                                   return itemValue >= parseFloat(config.searchValue);
+                               }else{
+                                   return itemValue > parseFloat(config.searchValue);
+                               }
+                           }else{
+                               return false;
+                           }
+
+                        }
+                        break;
+
+                };
+            },
+            _evaluateFunction: function (func, item) {
+                var parentResult = true;
+                if (func.fn) {
+                    parentResult = func.fn.call(null, item);
+                }
+                if (func.children) {
+                    for (var i = 0; i < func.children.length; i++) {
+                        var child = func.children[i];
+                        var result = this._evaluateFunction(child, item);
+                        if (child.config.logicalOperator == 'AND') {
+                            parentResult = parentResult && result;
+                        } else {
+                            parentResult = parentResult || result;
+                        }
+                    }
+                }
+                return parentResult;
+            },
+            _applySearchFunctions: function (fnList, data) {
+                var d = data.filter((function (item, index) {
+                    var toReturn = true;
+                    for (var i = 0; i < fnList.length; i++) {
+                        var func = fnList[i];
+                        var result = this._evaluateFunction(func, item);
+                        if (func.config.logicalOperator == 'AND') {
+                            toReturn = toReturn && result;
+                        } else {
+                            toReturn = toReturn || result;
+                        }
+                    }
+                    return toReturn;
+                }).bind(this));
+                return d;
+            },
+            _parseTree: function(list, idAttr, parentAttr, childrenAttr) {
+                if (!idAttr) idAttr = 'id';
+                if (!parentAttr) parentAttr = 'parent';
+                if (!childrenAttr) childrenAttr = 'children';
+                var treeList = [];
+                var lookup = {};
+                list.forEach(function (obj) {
+                    lookup[obj[idAttr]] = obj;
+                    obj[childrenAttr] = [];
+
+                });
+                list.forEach(function (obj) {
+                    if (obj[parentAttr] != null) {
+                        lookup[obj[parentAttr]][childrenAttr].push(obj);
+                    } else {
+                        treeList.push(obj);
+                    }
+                });
+                return treeList;
+            },
+            advanceSearch: function (data) {
+                var d = data || this.data;
+                if (!this.originalData) {
+                    this.originalData = d.slice();
+                } else {
+                    d = this.originalData.slice();
+                }
+                var fnList = [];
+                if (this.searchConfig) {
+                    for (var i = 0; i < this.searchConfig.length; i++) {
+                        var config = this.searchConfig[i];
+                        var fn = this._getSearchFn(config);
+                        fnList.push({ id: config.id, fn: fn, config: this.searchConfig[i], level: config.level, parent: config.parent, index: config.index });
+                    }
+                    var configHierarchy = this._parseTree(fnList);
+                    //config hierarchy with functions --> configHierarchy
+                }
+                // Hierarchy --> configHierarchy
+                d = this._applySearchFunctions(configHierarchy, d);
+                if (this.searchComplete) {
+                    this.searchComplete(d);
+                }
+                this.data = d;
+                return this.data;
+            }
+        };
+
+        scope.Searchable = Searchable;
+    })(window.StrandTraits = window.StrandTraits || {});
+</script>

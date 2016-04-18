@@ -1,0 +1,147 @@
+<!--
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html"/>
+<link rel="import" href="../shared/behaviors/resolvable.html"/>
+<link rel="import" href="../shared/behaviors/stylable.html"/>
+<link rel="import" href="../shared/behaviors/lightdomgettable.html"/>
+<link rel="import" href="../shared/behaviors/refable.html"/>
+
+<dom-module id="mm-filter">
+	<!--<link rel="import" type="css" href="mm-filter.css"/>-->
+	<style>
+		.green {
+			color: #079D35;
+		}
+
+		.red {
+			color: #EF4747;
+		}
+
+		.clear-fix {
+			clear: both;
+		}
+
+		.button {
+			cursor: pointer;
+			margin-top: 3px;
+		}
+
+		pre {
+			padding: 5px 10px;
+		}
+
+		.filter-wrapper {
+			padding: 10px;
+		}
+
+		.filter-wrapper-conatainer {
+			width: 900px;
+		}
+
+		.add_operation {
+			margin-bottom: 10px;
+		}
+
+		.conditionConnector {
+			width: 15%;
+			float: left;
+		}
+
+		.condition {
+			width: 85%;
+			float: left;
+			margin-bottom: 10px;
+		}
+.inclusiveLine{
+	width:15%;
+	float:left;
+	margin-right:5px;
+}
+		.conditionLine {
+			width: 19%;
+			float: left;
+			margin-right: 5px;
+		}
+		.conditionGroup {
+			width: 5%;
+			float: left;
+			margin-right:2px;
+			margin-top:5px;
+		}
+		.conditionDelete {
+			width: 10%;
+			margin-top: 5px;
+			margin-left: 5px;
+			float: left;
+		}
+	</style>
+	<template>
+		<template is="dom-if" if="{{!_isAdvance(searchMode)}}">
+			<mm-input id="simplemodeinput" placeholder="Search and Clear" value="{{_simpleSearchValue}}" search="true" clear="true"></mm-input>
+		</template>
+		<template is="dom-if" if="{{_isAdvance(searchMode)}}" >
+			<div class="filter-wrapper">
+				<div class="add_operation">
+					<mm-icon class="button green" type="include" width="25" height="25" on-click="_addConfig"></mm-icon>
+				</div>
+				<template is="dom-repeat" items="{{searchConfig}}">
+					<div style="margin-left:{{_getLeftMarginPerLevel(item)}}" class="filter-wrapper-conatainer">
+						<!-- conditionConnector -->
+						<div class="conditionConnector condition">
+							<template is="dom-if" if="{{_toSelectLogicalOperation(index,item)}}">
+								<mm-dropdown id="condition" value="{{item.logicalOperator}}" on-changed="_conditionChanged">
+									<mm-list-item>AND</mm-list-item>
+									<mm-list-item>OR</mm-list-item>
+								</mm-dropdown>
+							</template>
+						</div>
+						<!-- conditionConnector end -->
+
+						<!--condition-->
+						<div class="condition">
+							<div class="conditionGroup">
+								<mm-icon class="button green" type="include-outline" width="15" height="15" on-click="_addConfig"></mm-icon>
+							</div>
+							<div class="conditionLine">
+								<mm-dropdown fitparent id="selectColumn" data="{{columns}}" data-index="{{index}}" value="{{item.column::select}}" on-changed="_selectColumnChanged">
+
+								</mm-dropdown>
+							</div>
+							<div class="conditionLine">
+								<mm-dropdown fitparent id="comparison" value="{{item.comparison}}" on-changed="_comparisonChanged">
+									<mm-list-item>contains</mm-list-item>
+									<mm-list-item>exactMatch</mm-list-item>
+									<mm-list-item>LessThan</mm-list-item>
+									<mm-list-item>GreaterThan</mm-list-item>
+								</mm-dropdown>
+
+							</div>
+							<template is="dom-if" if="{{item.showInclusive}}">
+
+								<div class="inclusiveLine">
+									<mm-checkbox class="check-cbx"   checked="{{item.inclusive}}" icon="check">
+										<label>Inclusive</label>
+									</mm-checkbox>
+								</div>
+							</template>
+							<div class="conditionLine">
+								<mm-input placeholder="Search"  value="{{item.searchValue}}" search="true" clear="true"></mm-input>
+							</div>
+							<div class="conditionDelete">
+								<mm-icon class="button red" type="delete" width="15" height="15" on-click="_deleteConfig"></mm-icon>
+							</div>
+							<div class="clear-fix"></div>
+						</div>
+						<div class="clear-fix"></div>
+						<!--condition-->
+					</div>
+				</template>
+			</div>
+		</template>
+	</template>
+	<script src="mm-filter.js"></script>
+</dom-module>

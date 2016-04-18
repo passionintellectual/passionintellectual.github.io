@@ -1,0 +1,84 @@
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/* test.sass */
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+:host {
+  background-color: #fff;
+  box-sizing: border-box;
+  color: #333;
+  font-family: 'Arimo', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold; }
+
+ol {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: inherit;
+  border-bottom: 1px solid #E5E5E5;
+  border-top: 1px solid #E5E5E5;
+  box-sizing: border-box;
+  counter-reset: step;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 44px;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0;
+  padding: 10px 0; }
+
+li {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  box-sizing: border-box;
+  counter-increment: step;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  list-style-type: none;
+  max-height: 22px;
+  padding: 0 20px; }
+  li:not(:last-of-type) {
+    border-right: 1px solid #cbcbcb; }
+  li:before {
+    background-color: #E5E5E5;
+    border-radius: 20px;
+    color: #FFF;
+    content: counter(step);
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    font-size: 11px;
+    line-height: 20px;
+    height: 20px;
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    vertical-align: middle; }
+
+li.complete:before {
+  background-color: rgba(119, 189, 245, 0.5); }
+
+li.active:before {
+  background-color: #77BDF5; }

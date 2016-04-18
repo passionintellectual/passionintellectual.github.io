@@ -1,0 +1,80 @@
+<!-- Example Style -->
+<link rel="import" href="mm-pagination.html">
+<link rel="import" href="../mm-grid-item/mm-grid-item.html">
+<link rel="import" href="../mm-grid-column/mm-grid-column.html">
+<link rel="import" href="../mm-grid/mm-grid.html">
+
+
+<style>
+    .box {
+        min-width: 65px;
+        min-height: 65px;
+        background: #ff0000;
+    }
+    .box:not(:last-of-type) {
+        margin-right: 5px;
+    }
+</style>
+<!--<div>pagination controls</div>-->
+<mm-pagination total-rows="700"  >
+
+</mm-pagination>
+
+<hr>
+
+<!-- A default grid item example -->
+<mm-grid id="mmTestGrid1" selectable style="width: 100%; height: 300px;"  >
+    <mm-grid-column field="first_name">First Name</mm-grid-column>
+    <mm-grid-column field="last_name">Last Name</mm-grid-column>
+    <mm-grid-column field="email">Email</mm-grid-column>
+</mm-grid>
+
+
+<script>
+    // Default grid example
+    var grid1 = document.querySelector("#mmTestGrid1"),
+            grid1Data = [];
+
+    for(var i=0; i<33; i++){
+        grid1Data.push({
+            first_name: "First",
+            last_name: "Last",
+            email: "text@example.com",
+            selected: false
+        });
+    }
+
+    grid1.data = [{
+        first_name: "First",
+        last_name: "Last",
+        email: "text@example.com",
+        selected: false
+    },
+    {
+        first_name: "First",
+        last_name: "Last",
+        email: "text@example.com",
+        selected: false
+    },
+    {
+        first_name: "First",
+        last_name: "Last",
+        email: "text@example.com",
+        selected: false
+    },
+    {
+        first_name: "First",
+        last_name: "Last",
+        email: "text@example.com",
+        selected: false
+    }];
+
+
+
+    window.onload = function() {
+        console.log('in function');
+        grid1.data = grid1Data;
+        //grid2.data = grid2Data;
+    };
+</script>
+

@@ -1,0 +1,60 @@
+<script>
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+*/
+(function (scope) {
+
+	var Sortable = {
+
+		properties: {
+		    sortConfig: {
+				type: Object,
+				value:{}
+			}
+		},
+		_sortByCondition: function (condition, d) {
+		    var col_Name = condition.sortField;
+		    var sortOrder = condition.sortOrder;
+		    return d.sort(function (a, b) {                
+		        var a1 = a[col_Name], b1 = b[col_Name];
+		        if (sortOrder === -1) {
+		            if (a1 > b1) return -1;
+		            if (a1 < b1) return 1;
+		            return 0;
+		        }
+		        else if (sortOrder === 1) {
+		            if (a1 < b1) return -1;
+		            if (a1 > b1) return 1;
+		            return 0;
+		        }
+		    });
+		},
+		_sortNumericData: function (condition, d) {
+		    return d;
+		},
+		sort: function(data) {
+		    var d = data || this.data;
+		    if (d && Array.isArray(d) && this.sortConfig) {
+		        for (var i = 0; i < this.sortConfig.length; i++) {
+		            var sortCond = this.sortConfig[i];
+		            var col_Name = sortCond.sortField;
+		            var sortOrder = sortCond.sortOrder;
+		            d = this._sortByCondition(sortCond, d);
+		        }
+		    }
+			if(this.sortComplete) {
+				this.sortComplete(d);
+			}
+		    
+		    //return d;
+		},
+		sortComplete:function (d) {
+			this.data =d;
+		}
+	 };
+
+	scope.Sortable = Sortable;
+})(window.StrandTraits = window.StrandTraits || {}); 
+</script>

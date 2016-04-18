@@ -1,0 +1,143 @@
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+h1, .header-large {
+  font-size: 20px !important;
+  line-height: 25px !important;
+  font-family: "Arimo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-weight: 700;
+  font-style: normal;
+  color: #333; }
+
+h2, .header-medium {
+  font-size: 15px !important;
+  line-height: 20px !important;
+  font-family: "Arimo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-weight: 700;
+  font-style: normal;
+  color: #333; }
+
+h3, .header-small {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-family: "Arimo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-weight: 700;
+  font-style: normal;
+  color: #333; }
+
+h4, .header-normal {
+  font-size: 11px !important;
+  line-height: 14px !important;
+  font-family: "Arimo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #2E6C9E; }
+
+h5, .header-tiny {
+  font-size: 9px !important;
+  line-height: 12px !important;
+  font-family: "Arimo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #4C4C4C; }
+
+.body-normal {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-family: "Arimo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-weight: 400;
+  font-style: normal;
+  color: #333; }
+
+:host([fitparent]) {
+  width: 100%; }
+
+.content-top {
+  box-sizing: border-box;
+  margin: 32px 30px 30px; }
+
+.content-top mm-icon {
+  display: block;
+  float: left;
+  margin-right: -35px;
+  width: 25px; }
+
+:host-context([type="info"]) mm-icon {
+  color: #438ECA; }
+
+:host-context([type="success"]) mm-icon {
+  color: #9ECB5C; }
+
+:host-context([type="warning"]) mm-icon {
+  color: #FED01A; }
+
+:host-context([type="error"]) mm-icon {
+  color: #EA5151; }
+
+.content-top mm-header {
+  display: block;
+  margin-left: 35px; }
+
+.content-top mm-header:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  margin-bottom: 8px;
+  height: 0;
+  width: 100%; }
+
+#dialog-message {
+  clear: both; }

@@ -1,0 +1,120 @@
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/* test.sass */
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+:host {
+  display: block;
+  font-family: 'Arimo', sans-serif;
+  font-size: 14px;
+  position: relative; }
+
+#tabBar {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+  #tabBar li {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background: linear-gradient(#fff, #f1f3f7);
+    border: 1px solid #d5d5d5;
+    color: #7F7F7F;
+    cursor: pointer;
+    list-style-type: none; }
+    #tabBar li mm-icon {
+      margin-right: 5px; }
+  #tabBar li[active] {
+    background: #fff;
+    color: #000;
+    cursor: default; }
+
+#tabBar.top {
+  border-bottom: 1px solid #d1d7e4; }
+  #tabBar.top li {
+    border-bottom: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin: 0 -1px 0 0;
+    padding: .5em 1em .25em; }
+    #tabBar.top li mm-icon {
+      margin-right: 5px; }
+  #tabBar.top li[active] {
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px; }
+  #tabBar.top mm-icon {
+    margin-top: -2px;
+    margin-right: 2px; }
+
+#tabBar.left {
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  float: left;
+  margin-left: 10px; }
+  #tabBar.left mm-icon {
+    margin-top: -1px;
+    margin-right: 6px; }
+  #tabBar.left li {
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    border-right: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    box-sizing: border-box;
+    padding: .5em 1.25em .5em .5em;
+    margin-bottom: -1px; }
+  #tabBar.left li[active] {
+    border-right: 1px solid #fff;
+    color: #000;
+    margin-right: -1px; }
+
+#tabBar.left > ::content > mm-tab {
+  border-left: 1px solid #d1d7e4; }
+
+:host([inner]) #tabBar.top {
+  background: linear-gradient(transparent, #f1f3f7);
+  font-size: 80%; }
+  :host([inner]) #tabBar.top li {
+    background: transparent;
+    border-top: none;
+    border-radius: 0;
+    border-image: linear-gradient(to bottom, transparent, #d5d5d5) 1 100%;
+    padding: .75em 1em .5em; }
+    :host([inner]) #tabBar.top li mm-icon {
+      margin-right: 5px; }
+  :host([inner]) #tabBar.top li[active] {
+    background: #fff; }

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+	<title> Image Gallery </title>
+	<script src="../../bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="../../bower_components/polymer/polymer.html">
+	<link rel="import" href="mm-gallery.html">
+
+	<script>
+		var imgdata = [{
+			"id": "1",
+			"thumb_src":  "../../docs/images/thumbnails/img01.jpg",
+			"img_src": "../../docs/images/img01.jpg",
+			"caption": "Image 1",
+			"caption_position": "bottom"
+		}, {
+			"id": "2",
+			"thumb_src": "../../docs/images/thumbnails/img02.jpg",
+			"img_src": "../../docs/images/img02.jpg",
+			"caption": "Image 2",
+			"caption_position": "bottom"
+		}, {
+			"id": "3",
+			"thumb_src": "../../docs/images/thumbnails/img03.jpg",
+			"img_src": "../../docs/images/img03.jpg",
+			"caption": "Image 3",
+			"caption_position": "bottom"
+		}, {
+			"id": "4",
+			"thumb_src": "../../docs/images/thumbnails/img04.jpg",
+			"img_src": "../../docs/images/img04.jpg",
+			"caption": "Image 4",
+			"caption_position": "top"
+		}, {
+			"id": "5",
+			"thumb_src": "../../docs/images/thumbnails/img05.jpg",
+			"img_src": "../../docs/images/img05.jpg",
+			"caption": "Image 5",
+			"caption_position": "top"
+		}, {
+			"id": "6",
+			"thumb_src": "../../docs/images/thumbnails/img06.jpg",
+			"img_src": "../../docs/images/img06.jpg",
+			"caption": "Image 6",
+			"caption_position": "top"
+		}, {
+			"id": "7",
+			"thumb_src": "../../docs/images/thumbnails/img07.jpg",
+			"img_src": "../../docs/images/img07.jpg",
+			"caption": "Image 7",
+			"caption_position": "bottom"
+		}, {
+			"id": "8",
+			"thumb_src": "../../docs/images/thumbnails/img08.jpg",
+			"img_src": "../../docs/images/img08.jpg",
+			"caption": "Image 8",
+			"caption_position": "top"
+		}, {
+			"id": "9",
+			"thumb_src": "../../docs/images/thumbnails/img09.jpg",
+			"img_src": "../../docs/images/img09.jpg",
+			"caption": "Image 9",
+			"caption_position": "bottom"
+		}, {
+			"id": "10",
+			"thumb_src": "../../docs/images/thumbnails/img10.jpg",
+			"img_src": "../../docs/images/img10.jpg",
+			"caption": "Image 10",
+			"caption_position": "top"
+		}, {
+			"id": "11",
+			"thumb_src": "../../docs/images/thumbnails/img09.jpg",
+			"img_src": "../../docs/images/img09.jpg",
+			"caption": "Image 11",
+			"caption_position": "bottom"
+		}, {
+			"id": "12",
+			"thumb_src": "../../docs/images/thumbnails/img10.jpg",
+			"img_src": "../../docs/images/img10.jpg",
+			"caption": "Image 12",
+			"caption_position": "top"
+		}, {
+			"id": "13",
+			"thumb_src": "../../docs/images/thumbnails/img01.jpg",
+			"img_src": "../../docs/images/img01.jpg",
+			"caption": "Image 13",
+			"caption_position": "bottom"
+		}, {
+			"id": "14",
+			"thumb_src": "../../docs/images/thumbnails/img02.jpg",
+			"img_src": "../../docs/images/img02.jpg",
+			"caption": "Image 14",
+			"caption_position": "bottom"
+		}];
+
+		window.addEventListener('HTMLImportsLoaded', function() {
+			var imgGallery = document.querySelector('#imggallery');
+			var data = JSON.stringify(imgdata);
+			imgGallery.setAttribute('data', data);
+		});
+	</script>
+</head>
+<body>
+<mm-gallery id="imggallery">
+	<div class="header"> Header </div>
+	<div class="footer"> Footer </div>
+</mm-gallery>
+
+</body>
+</html>

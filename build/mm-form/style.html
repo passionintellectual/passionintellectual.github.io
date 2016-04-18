@@ -1,0 +1,35 @@
+<!--
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+ -->
+<dom-module id="mm-form-style">
+	<template>
+		<style>
+			/**
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+*/
+:host {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  position: relative; }
+
+:host ::content .col {
+  box-sizing: border-box; }
+
+:host ::content mm-radio label {
+  line-height: 29px; }
+
+:host ::content [form-header] {
+  margin-bottom: 10px; }
+
+		</style>
+	</template>
+</dom-module>

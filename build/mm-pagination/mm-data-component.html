@@ -1,0 +1,64 @@
+<!--
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html"/>
+
+<!--<script src="../../bower_components/eventdispatcherjs/src/EventDispatcher.js"> </script>-->
+
+
+<link rel="import" href="../shared/behaviors/resolvable.html"/>
+<link rel="import" href="../shared/behaviors/lightdomgettable.html"/>
+<link rel="import" href="../shared/behaviors/refable.html"/>
+<link rel="import" href="../shared/js/eventdispatcher.html"/>
+<link rel="import" href="../shared/behaviors/searchable.html" />
+<link rel="import" href="../shared/behaviors/sortable.html" />
+
+<dom-module id="mm-data-component" >
+
+    <script>
+        (function () {
+            Polymer({
+                is: 'mm-data-component',
+                ready: function () {
+                    this.data = this.parentNode.data;
+                },
+                observers : [
+
+
+                ],
+                properties: {
+                    page:{
+                        type:Number,
+                        value:0,
+                        notify:true,
+                        reflectToAttribute: true
+                    },
+                    pageSize:{
+                        type:Number,
+                        value:10,
+                        notify:true,
+                        reflectToAttribute: true
+                    },
+                    type:{
+                        type:String,
+                        value:'',
+                        notify:true
+                    }
+//                    data:{
+//                        type:Array,
+//                        value:[],
+//                        notify: true,
+//                        observer: '_dataChangedExtended'
+//                    }
+                },
+                behaviors: [
+                    StrandTraits.Searchable,
+                    StrandTraits.Sortable
+                ]
+            });
+        })(window.Strand = window.Strand || {})
+    </script>
+    </dom-module>

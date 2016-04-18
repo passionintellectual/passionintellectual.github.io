@@ -1,0 +1,226 @@
+<!--
+ * @license
+ * Copyright (c) 2015 MediaMath Inc. All rights reserved.
+ * This code may only be used under the BSD style license found at http://mediamath.github.io/strand/LICENSE.txt
+
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<!--<script src="../../bower_components/eventdispatcherjs/src/EventDispatcher.js"> </script>-->
+<link rel="import" href="../shared/behaviors/resolvable.html" />
+<link rel="import" href="../shared/behaviors/stylable.html" />
+<link rel="import" href="../shared/behaviors/lightdomgettable.html" />
+<link rel="import" href="../shared/behaviors/refable.html" />
+<link rel="import" href="../shared/behaviors/pageable-extended.html" />
+<!--<link rel="import" href="pageDataProvider.html"/>-->
+<link rel="import" href="../shared/js/eventdispatcher.html" />
+<link rel="import" href="../mm-button/mm-button.html">
+<link rel="import" href="../shared/behaviors/selectable.html" />
+<dom-module id="mm-pagination">
+    <template>
+        <style>
+            body {
+                font-style: inherit;
+                font-variant: inherit;
+                font-weight: inherit;
+                font-stretch: inherit;
+                font-family: Roboto, sans-serif;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .clearFix {
+                clear: both;
+            }
+
+            .prvIcon, .nxtIcon {
+                font-family: cursive;
+            }
+
+            ul {
+                list-style: none;
+                display: inline-block;
+            }
+
+            .page-btn-ul-wrap {
+                text-align: center;
+            }
+
+            .page-btn-li-wrap {
+                margin: 0 10px;
+            }
+
+                .page-btn-li-wrap li {
+                    display: inline;
+                }
+
+                    .page-btn-li-wrap li a {
+                        cursor: pointer;
+                        text-decoration: none;
+                        float: left;
+                        color: #337ab7;
+                        border: 1px solid #ddd;
+                        padding: 6px 12px;
+                        margin-left: -1px;
+                        line-height: 1.42857143;
+                    }
+
+                        .page-btn-li-wrap li a.active,
+                        .page-btn-li-wrap li a.active:hover {
+                            cursor: default;
+                            /*#00bcd4*/
+                            background-color: #428bca;
+                            border-color: #428bca;
+                            color: #fff;
+                        }
+
+                        .page-btn-li-wrap li a:hover {
+                            color: #23527c;
+                            background-color: #eee;
+                            border-color: #ddd;
+                        }
+
+                        .page-btn-li-wrap li a.disabled {
+                            color: #777;
+                            cursor: not-allowed;
+                            background-color: #fff;
+                            border-color: #ddd;
+                        }
+
+                    .page-btn-li-wrap li:first-child > a {
+                        border-top-left-radius: 6px;
+                        border-bottom-left-radius: 6px;
+                    }
+
+                    .page-btn-li-wrap li:last-of-type > a {
+                        border-top-right-radius: 6px;
+                        border-bottom-right-radius: 6px;
+                    }
+        </style>
+        <div class="page-btn-ul-wrap">
+            <ul class="mm-pagination">
+                <div class="page-btn-li-wrap">
+                    <li><a on-tap="gotoFirst" class="prvIcon"><<</a></li>
+                    <li><a on-tap="prevPage" class="prvIcon"><</a></li>
+                    <template is="dom-repeat" items="{{pages}}">
+                        <li>
+                            <a href="#" on-tap="pageNumberTap" class$="{{echo_class(item,page,'active')}}">{{item}}</a>
+                        </li>
+                    </template>
+                    <li><a on-tap="nextPage" class="nxtIcon">></a></li>
+                    <li><a on-tap="gotoLast" class="nxtIcon">>></a></li>
+                </div>
+            </ul>
+            <div>
+                <label>Jump To :</label>
+                <!--on-changed="pageNumberChange"-->
+                <mm-dropdown id="jumpTo" placeholder="1" on-changed="pageNumberChange" value="{{pageDisplayValue(page)}}"   >
+                    <template is="dom-repeat" items="{{allPages}}">
+                        <mm-list-item>{{item}}</mm-list-item>
+                    </template>
+                </mm-dropdown>
+            </div>
+            <div class="clearFix"></div>
+        </div>
+        <content></content>
+    </template>
+
+    <script>
+        (function () {
+            Polymer({
+                is: 'mm-pagination',
+                echo_class: function (item, page, className) {
+                    return item === (page + 1) ? className : '';
+                },
+                ready: function () {
+                    this.populatePageNumbers();
+                    this._populateAllpageNumbers();
+                    this.addEventListener('datachanged', this._dataChanged.bind(this))
+                },
+                _populateAllpageNumbers: function () {
+                    var lastPageNum = this.getLastPageNumber();
+                    var allPages = [];
+                    for (var i = 0; i <= lastPageNum; i++) {
+                        allPages[i] = i + 1;
+                    }
+                    this.allPages = allPages;
+                },
+                pageNumberChange: function (evt) {
+                    this.goto(evt.detail.value - 1);
+                },
+                pageNumberTap: function (evt) {
+                    this.goto(evt.model.item - 1);
+                },
+                observers: [
+                    //'_pageChangedExtended(page)',
+                    //'_pageDataChanged(data)',
+
+                ],
+                _dataChanged:function (info) {
+                    if(info.detail && info.detail.data) {
+                        this.totalRows = info.detail.data.length - 1;
+                    }
+                    this.page = 0;
+                    this._pageChanged(0);
+                    //this.populatePageNumbers();
+                    this._populateAllpageNumbers();
+                },
+                _pageChanged: function (page) {
+                     this.populatePageNumbers();
+                    var child = this.querySelector('mm-pagination-data-provider');
+                    child.page = page;
+//                    if(child._pageChangedExtended) {
+//                        child._pageChangedExtended(page);
+//                    }
+                    this.fire('pagechanged', { name: 'pagechanged', page: this.page });
+                },
+                populatePageNumbers: function () {
+                    var list = [];
+                    var offset = 5;
+                    var currentPage = this.page;
+                    var lastPageNum = +this.getLastPageNumber();
+
+                    var leftNumber = +currentPage;
+                    var offset_l = lastPageNum - currentPage < offset ? (offset + (offset - (lastPageNum - currentPage))) : offset;
+                    for (var i = 0; i < +offset_l; i++) {
+                        list.push(leftNumber + 1);
+                        leftNumber = leftNumber - 1;
+                        if (leftNumber < 0) {
+                            break;
+                        }
+                    }
+
+                    var offset_r = currentPage < offset ? offset + (offset - currentPage - 1) : offset;
+                    var rightNumber = this.page;
+                    for (var i = 0; i < +offset_r; i++) {
+                        rightNumber = +rightNumber + 1;
+                        if (rightNumber > lastPageNum) {
+                            break;
+                        }
+                        list.push(+rightNumber + 1);
+                    }
+
+                    this.pages = list.sort(function (a, b) {
+                        return a - b;
+                    });
+                },
+                properties: {
+                    pages: {
+                        type: Number,
+                        value: [],
+                        notify: true,
+                        reflectToAttribute: true
+                    },
+                    data: {
+                        type: Array,
+                        value: [],
+                        notify: true,
+                    }
+                },
+                behaviors: [
+                    StrandTraits.PageableExtended,
+                    StrandTraits.Resolvable
+                ],
+            });
+        })(window.Strand = window.Strand || {})
+    </script>
+</dom-module>

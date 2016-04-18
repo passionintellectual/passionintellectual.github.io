@@ -1,0 +1,12 @@
+{
+  "name": "eventdispatcherjs",
+  "homepage": "https://github.com/mrdoob/eventdispatcher.js",
+  "_release": "57d849444a",
+  "_resolution": {
+    "type": "commit",
+    "commit": "57d849444a"
+  },
+  "_source": "git://github.com/mrdoob/eventdispatcher.js.git",
+  "_target": "57d849444a",
+  "_originalSource": "mrdoob/eventdispatcher.js"
+}
