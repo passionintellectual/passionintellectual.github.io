@@ -30,17 +30,15 @@
 
 .img-slider .slide_left {
   position: relative;
-  transition: all 0.5s ease-in-out;
-  -webkit-animation: rightmove 1s 1;
-  animation: rightmove 1s 1; }
+  -webkit-animation: rightmove 0s 1;
+  animation: rightmove 0s 1; }
 
 .img-slider .slide_right {
   position: absolute;
   left: 100px;
   visibility: hidden;
-  -webkit-animation: leftmove 2s 1;
-  animation: leftmove 2s 1;
-  transition: all 0.5s ease-in-out; }
+  -webkit-animation: leftmove 0.5s 1;
+  animation: leftmove 0.5s 1; }
 
 .hidden {
   visibility: hidden; }
@@ -48,7 +46,7 @@
 .visible {
   visibility: visible; }
 
-.img-slider .mm-gallery img {
+.img-slider img.blur {
   opacity: 0.5;
   display: inline-block; }
 
@@ -113,11 +111,8 @@
   right: 12px;
   display: table-cell; }
 
-div.header, div.footer {
+div#header, div#footer {
   display: block;
   text-align: center;
   font-weight: bold;
   height: 20px; }
-
-mm-form mm-footer {
-  display: none; }

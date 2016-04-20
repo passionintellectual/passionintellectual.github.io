@@ -1,0 +1,42 @@
+<mm-gallery id="imggallery">
+</mm-gallery>
+
+<script>
+    var imgdata = [{
+        "id": "1",
+        "thumb_src": "../../docs/images/thumbnails/01.JPG",
+        "img_src": "../../docs/images/01.JPG",
+        "caption": "Image 1",
+        "caption_position": "top"
+    }, {
+        "id": "2",
+        "thumb_src": "../../docs/images/thumbnails/02.JPG",
+        "img_src": "../../docs/images/02.JPG",
+        "caption": "Image 2",
+        "caption_position": "top"
+    }, {
+        "id": "3",
+        "thumb_src": "../../docs/images/thumbnails/03.JPG",
+        "img_src": "../../docs/images/03.JPG",
+        "caption": "Image 3",
+        "caption_position": ""
+    }, {
+        "id": "4",
+        "thumb_src": "../../docs/images/thumbnails/04.JPG",
+        "img_src": "../../docs/images/04.JPG",
+        "caption": "Image 4",
+        "caption_position": "top"
+    }, {
+        "id": "5",
+        "thumb_src": "../../docs/images/thumbnails/05.JPG",
+        "img_src": "../../docs/images/05.JPG",
+        "caption": "Image 5",
+        "caption_position": "top"
+    }];
+
+    window.addEventListener('HTMLImportsLoaded', function() {
+        var gallery = document.querySelector('#gallery');
+        var data = JSON.stringify(imgdata);
+        gallery.setAttribute('data', data);
+    });
+</script>

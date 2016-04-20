@@ -1,0 +1,22 @@
+{
+  "name": "mm-gallery",
+  "description": "A fully-styled, image gallery with thumbnail slider & enlarged image view.",
+  "attributes": [
+    {
+      "name": "data",
+      "type": "Array",
+      "description": "The array of data with configurations for image sources & caption for gallery.",
+      "optional": false,
+      "default": "[]"
+    }
+  ],
+  "methods": [
+    {
+      "name": "selectFirst",
+      "description": "It shows the first thumbnail image as active."
+    }
+  ],
+  "behaviors" : [
+    "Stylable"
+  ]
+}
